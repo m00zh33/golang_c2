@@ -79,6 +79,8 @@ MessageID | Protobuf
 16 | Task
 17 | TaskResponse
 
+Don't mix up MessageID that identifies Protobuf with TaskID that identifies what the beacon will be doing. In the current sample:
+
 TaskID | Task
 ------------ | ------------- 
 15 | Knock 
