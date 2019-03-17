@@ -1,0 +1,20 @@
+{
+	"server" : {
+		"use_tls": false,
+		"port":8000,
+		"gate_endpoint":"/gate.html",
+		"crt_path": "config/server.crt", 
+		"key_path": "config/server.key"
+	},
+	"database": {
+		"user":"root",
+		"password":"",
+		"database":"c2"
+	},
+	"receiver": {
+		"type":"ReceiverCookie",
+		"key_path":"config/receiver.pem",
+		"key_size":256
+	}
+	
+}
