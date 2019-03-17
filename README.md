@@ -7,7 +7,7 @@ This is an attempt to create a sample C2 server in Go. This repo includes Go cod
 ![C2 Agent Demo](/docs/c2_agent_demo.gif)
 
 ## Features
-- [x] Accepting payload in Cookie (like Emotet)
+- [x] Accepting payload in Cookie (like Emotet). Can be changed to anything in HTTP request.
 - [x] Cycling AES key and iv on each request
 - [x] Public/Private cryptography for the AES key
 - [x] Google Protobufs for the messages
