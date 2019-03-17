@@ -54,11 +54,23 @@ By default, I broke down the code into 5 modules:
 ### Config
 Config is responsible for parsing JSON config of the server. You can add custom structures for your config based on needs. Right now it contains the basics, like port, TLS, database credentials and cryptography. Config is loaded in main and guides how server will behave.
 ### Cryptography
-Cryptography contains 3 basic functons:
+Cryptography contains 3 basic functions
 #### LoadCrypto
 LoadCrypto intializes the ciphers
 #### Decrypt
 Takes in string and returns bytes. You can change how decrypt works based on your needs, but out of the box it supports Emotet style encryption.
 #### Encrypt
 Encrypt takes in bytes and produces a string. You can edit how encryption works based on expectation from your beacon.
+### DB
+Database handles all DB communications. I didn't want to use any ORM plugins so everything is done via SQL driver. My approach is to use `LoadDB` for initializing DB connection and then create files based on the logic. For example, I have Task.go file that contains the structure for `tasks` table's rows.
+### Message
+Message is the core of the C2. When you generate protobufs, they are being added to message package. My approach for designing messages are as such:
+* Each message exchanged between C2 and beacon is a serialized protobuf.
+* Each protobuf is wrapped into Envelope protobuf containing `messageId` and `message` body. 
+* The processing of messages depends on `messageId`.
+* Each message gets its own handler that consumers the request and produces a response.
+* Current implementation is very basic, agent send Knock request and C2 responds with Task response. 
+* `taskId` guides what the agent will be doing. For example, taskId 16 tells agent to execute task body as a shell command.
+You can extend the messaging based on your beacon needs.
+
 
