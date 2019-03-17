@@ -30,7 +30,7 @@ This is an attempt to create a sample C2 server in Go. This repo includes Go cod
 `mysql -u<user> -p c2 < c2_sample.sql`
 6. Launch the server
 `go run main.go`
-7. If this works, have fun and hack the code
+7. If this works, have fun and hack the code :beers:
 
 ### Agent
 1. In a separate tab, go into agent_demo folder
@@ -43,3 +43,22 @@ This is an attempt to create a sample C2 server in Go. This repo includes Go cod
 `pip3 install -r requirements`
 5. Launch the agent and watch it connect
 `python3 agent.py`
+
+## How to navigate code
+By default, I broke down the code into 5 modules:
+* config       
+* cryptography 
+* db
+* message 
+* server
+### Config
+Config is responsible for parsing JSON config of the server. You can add custom structures for your config based on needs. Right now it contains the basics, like port, TLS, database credentials and cryptography. Config is loaded in main and guides how server will behave.
+### Cryptography
+Cryptography contains 3 basic functons:
+#### LoadCrypto
+LoadCrypto intializes the ciphers
+#### Decrypt
+Takes in string and returns bytes. You can change how decrypt works based on your needs, but out of the box it supports Emotet style encryption.
+#### Encrypt
+Encrypt takes in bytes and produces a string. You can edit how encryption works based on expectation from your beacon.
+
