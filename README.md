@@ -73,4 +73,19 @@ Message is the core of the C2. When you generate protobufs, they are being added
 * `taskId` guides what the agent will be doing. For example, taskId 16 tells agent to execute task body as a shell command.
 You can extend the messaging based on your beacon needs.
 
+MessageID | Protobuf
+------------ | ------------- 
+15 | Knock 
+16 | Task
+17 | TaskResponse
+
+TaskID | Task
+------------ | ------------- 
+15 | Knock 
+16 | Shell
+
+### Server
+Server module initializes the web server and handler functions. This is a pretty standard Go web server.
+
+
 
